@@ -1,4 +1,5 @@
 from urllib2 import *
+import os
 
 #Gets the .csv file for the particular stock from Quandl API
 def getStock(company, key):
@@ -34,6 +35,14 @@ def main():
 	stock = parseFile(stocks, header)
 
 	#Access the information from the data
-
+	print "Which date do you want the info for? "
+	year = raw_input("Which year (Format: yyyy)? ")
+	month = raw_input("Which month (Format: mm)? ")
+	day = raw_input("Which day (Format: dd)? ")
+	os.system("clear")
+	output = ''
+	for data in stock[year + '-' + month + '-' + day]:
+		output += data + ' = ' + stock[year + '-' + month + '-' + day][data] + "\n"
+	print output
 
 if __name__ == "__main__":main()
